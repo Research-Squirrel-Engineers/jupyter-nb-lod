@@ -1,3 +1,4 @@
+import os
 from SPARQLWrapper import SPARQLWrapper, JSON
 import pandas as pd
 import geopandas as gpd
@@ -26,6 +27,9 @@ def decimal_to_dms(decimal, is_latitude):
         direction = 'E' if decimal >= 0 else 'W'
     return f"{abs(degrees)}°{minutes}'{seconds:.3f}\"{direction}"
 
+# Define the GeoJSON file path
+geojson_file = os.path.join(os.path.dirname(__file__), "gs_ireland_island.geojson")
+
 # Updated SPARQL Query
 oghamQuery = """
 SELECT ?item ?itemLabel ?geo ?site ?siteLabel ?county ?countyLabel WHERE { 
@@ -34,7 +38,7 @@ SELECT ?item ?itemLabel ?geo ?site ?siteLabel ?county ?countyLabel WHERE {
   ?site wdt:P31 wd:Q72617071.
   ?item wdt:P189 ?county.
   ?county wdt:P31 wd:Q179872.
-  OPTIONAL { ?item wdt:P625 ?geo. }
+  ?item wdt:P625 ?geo.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 """
@@ -69,10 +73,6 @@ else:
     # Filter rows with valid coordinates
     df_with_coords = df.dropna(subset=['latitude', 'longitude'])
 
-    # Add DMS columns
-    df_with_coords['latitude_dms'] = df_with_coords['latitude'].apply(lambda x: decimal_to_dms(x, is_latitude=True))
-    df_with_coords['longitude_dms'] = df_with_coords['longitude'].apply(lambda x: decimal_to_dms(x, is_latitude=False))
-
     # Create a GeoDataFrame
     gdf = gpd.GeoDataFrame(
         df_with_coords,
@@ -80,8 +80,16 @@ else:
         crs="EPSG:4326"
     )
 
-    # Convert to Web Mercator (EPSG:3857) for OSM basemap
+    # Add DMS columns
+    gdf['latitude_dms'] = gdf['geometry'].y.apply(lambda x: decimal_to_dms(x, is_latitude=True))
+    gdf['longitude_dms'] = gdf['geometry'].x.apply(lambda x: decimal_to_dms(x, is_latitude=False))
+
+    # Convert to Web Mercator for OSM basemap
     gdf_mercator = gdf.to_crs(epsg=3857)
+
+    # Load Ireland boundary from GeoJSON
+    ireland_boundary = gpd.read_file(geojson_file)
+    ireland_boundary = ireland_boundary.to_crs(epsg=3857)
 
     # Map 1: Plot with DMS coordinates
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -95,7 +103,6 @@ else:
     plt.legend()
     plt.tight_layout()
     plt.show()
-    plt.close(fig)
 
     # Map 2: Plot with points colored by county
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -111,18 +118,20 @@ else:
     plt.legend(title="Counties", bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout()
     plt.show()
-    plt.close(fig)
 
-    # Map 3: Density map
+    # Map 3: Density map with Ireland's boundary and points > latitude 50
+    gdf_high_latitude = gdf[gdf['geometry'].y > 50]  # Filter points with latitude > 50
+    gdf_high_latitude_mercator = gdf_high_latitude.to_crs(epsg=3857)
     fig, ax = plt.subplots(figsize=(12, 8))
-    x, y = gdf['geometry'].x, gdf['geometry'].y
+    ireland_boundary.plot(ax=ax, facecolor="none", edgecolor="black", linewidth=2, alpha=0.7, label="Ireland Border")
+    x, y = gdf_high_latitude_mercator['geometry'].x, gdf_high_latitude_mercator['geometry'].y
     xy = np.vstack([x, y])
     kde = gaussian_kde(xy)(xy)  # Kernel density estimate
-    ax.scatter(x, y, c=kde, cmap='viridis', s=50, alpha=0.7)  # Scatter plot with density
+    ax.scatter(x, y, c=kde, cmap='viridis', s=50, alpha=0.7, label="Ogham Stones Density")
     ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, zoom=8)
     ax.set_axis_off()
-    plt.title("Density Map of Ogham Stone Sites")
+    plt.title("Density Map of Ogham Stone Sites (Latitude > 50°)")
     plt.colorbar(ax.collections[0], ax=ax, label='Density')
+    plt.legend()
     plt.tight_layout()
     plt.show()
-    plt.close(fig)
