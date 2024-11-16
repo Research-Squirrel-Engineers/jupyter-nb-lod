@@ -1,0 +1,1 @@
+@jupiter-nb-lod > jupyter lab
