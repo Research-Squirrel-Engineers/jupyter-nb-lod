@@ -7547,7 +7547,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -7588,7 +7588,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># SPARQL Query</span>
@@ -7623,7 +7623,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Fetch data using the SPARQL query</span>
@@ -7644,7 +7644,7 @@ a.anchor-link {
     <span class="p">})</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -7654,21 +7654,65 @@ a.anchor-link {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>                                       item  \
-0  http://www.wikidata.org/entity/Q55685833   
-1   http://www.wikidata.org/entity/Q3554226   
-2  http://www.wikidata.org/entity/Q28978015   
-3   http://www.wikidata.org/entity/Q3867665   
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-                           itemLabel   latitude  longitude  
-0               Chieti Roman theatre  42.347124  14.163451  
-1                              Teate  42.346992  14.168101  
-2    Teate Marrucinorum amphitheatre  42.345025  14.162539  
-3  Archeological Museum La Civitella  42.345096  14.162026  
-</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>item</th>
+<th>itemLabel</th>
+<th>latitude</th>
+<th>longitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>http://www.wikidata.org/entity/Q55685833</td>
+<td>Chieti Roman theatre</td>
+<td>42.347124</td>
+<td>14.163451</td>
+</tr>
+<tr>
+<th>1</th>
+<td>http://www.wikidata.org/entity/Q3554226</td>
+<td>Teate</td>
+<td>42.346992</td>
+<td>14.168101</td>
+</tr>
+<tr>
+<th>2</th>
+<td>http://www.wikidata.org/entity/Q28978015</td>
+<td>Teate Marrucinorum amphitheatre</td>
+<td>42.345025</td>
+<td>14.162539</td>
+</tr>
+<tr>
+<th>3</th>
+<td>http://www.wikidata.org/entity/Q3867665</td>
+<td>Archeological Museum La Civitella</td>
+<td>42.345096</td>
+<td>14.162026</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -7689,16 +7733,13 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Check if DataFrame is populated</span>
 <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"No data retrieved from the query."</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Data retrieved:"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-
     <span class="c1"># Filter rows with valid coordinates</span>
     <span class="n">df_with_coords</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'latitude'</span><span class="p">,</span> <span class="s1">'longitude'</span><span class="p">])</span>
 
@@ -7732,24 +7773,6 @@ a.anchor-link {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Data retrieved:
-                                       item  \
-0  http://www.wikidata.org/entity/Q55685833   
-1   http://www.wikidata.org/entity/Q3554226   
-2  http://www.wikidata.org/entity/Q28978015   
-3   http://www.wikidata.org/entity/Q3867665   
-
-                           itemLabel   latitude  longitude  
-0               Chieti Roman theatre  42.347124  14.163451  
-1                              Teate  42.346992  14.168101  
-2    Teate Marrucinorum amphitheatre  42.345025  14.162539  
-3  Archeological Museum La Civitella  42.345096  14.162026  
-</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
