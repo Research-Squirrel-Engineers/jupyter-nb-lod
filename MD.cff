@@ -1,0 +1,85 @@
+md_cff_version: "0.1"
+
+fdo_type: "fdo:SoftwareFDO"
+
+id: "https://doi.org/10.5281/zenodo.18443106"
+
+title: "Ogham 3D EpiDoc Extractor"
+
+description: "Jupyter Notebooks for Wikidata and LOD resources"
+
+version: "0.1"
+
+date_created: "2024-11-16"
+date_released: "2025-11-23"
+date_modified:
+  - "2026-01-31"
+
+funding:
+  - "Community Project"
+
+keywords:
+  - label: "Ogham Stone"
+    id: "http://www.wikidata.org/entity/Q2016147"
+  - label: "Linked Open Data"
+    id: "http://www.wikidata.org/entity/Q18692990"
+  - label: "Samian Ware"
+    id: "http://www.wikidata.org/entity/Q66263511"
+  - label: "Pokémon"
+    id: "http://www.wikidata.org/entity/Q239937"
+  - label: "Holy Well"
+    id: "http://www.wikidata.org/entity/Q1371047"
+  - label: "Campanian Ignimbrite eruption"
+    id: "http://www.wikidata.org/entity/Q28231691"
+
+license:
+  label: "MIT"
+  id: "https://spdx.org/licenses/MIT.html"
+
+publishers:
+  - label: "Research Squirrel Engineers Network"
+    id: "http://www.wikidata.org/entity/Q73901970"
+
+creators:
+  - label: "Thiery, Florian"
+    id: "https://orcid.org/0000-0002-3246-3531"
+
+identifiers:
+  - scheme: "doi"
+    value: "10.5281/zenodo.18369125"
+    label: "Zenodo DOI"
+  - scheme: "url"
+    value: "https://github.com/Research-Squirrel-Engineers/jupyter-nb-lod/"
+    label: "Source repository"
+  - scheme: "url"
+    value: "https://research-squirrel-engineers.github.io/jupyter-nb-lod/"
+    label: "HTML Page"
+
+related_resources:
+  - relation: "isDocumentedBy"
+    target:
+      label: "deRSE25 Paper"
+      id: "https://doi.org/10.14279/ECEASST.V85.2706"
+    note: "Paper at the deRSE25 Conference"
+
+spatial:
+  label: "Europe (incl. UK & Ireland; excl. Russia) — study area"
+  id: "https://www.geonames.org/6255148/"
+  wkt: "POLYGON((-10.6695833333 34.5,32.0 34.5,32.0 71.5,-10.6695833333 71.5,-10.6695833333 34.5))"
+  bounding_box: "-10.6695833333,34.5,32.0,71.5"
+  lon: 10.6652083334
+  lat: 53.0
+
+temporal:
+  label: "Composite scope (broad archaeological-to-present range)"
+  start: -5000
+  end: 2025
+
+technique:
+  programming_languages:
+    - "Python"
+    - "Jupyter Notebook"
+  repository:
+    type: "git"
+    url: "https://github.com/Research-Squirrel-Engineers/jupyter-nb-lod/"
+    development_status: "active"
